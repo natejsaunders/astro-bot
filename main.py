@@ -1,5 +1,8 @@
 from wikidata.client import Client
 
+# All information from Wikidata
+# https://www.wikidata.org/
+
 client = Client()
 
 planet_ids = {
@@ -15,7 +18,8 @@ property_ids = {
      'albedo': 'P4501',
      'density': 'P2054',
      'temperature': 'P2076',
-     'area': 'P2046'
+     'area': 'P2046',
+     'unit symbol': 'P5061'
 }
 
 print("Hello there!")
@@ -48,7 +52,7 @@ while not quit:
 
                 planet_data = planet_entity.getlist(property_entity)
                 for value in planet_data:
-                    print(value)
+                    print(f"{value.amount}{value.unit.getlist(property_ids['unit symbol'])}")
 
     else:
         print("I do not understand your question.")
